@@ -31,16 +31,20 @@ async function draw(el, scale) {
       .scaleQuantize()
       .domain(d3.extent(dataset))
       .range(["white", "pink", "red"]);
+
+    console.log("Quantize:", colorScale.thresholds());
   } else if (scale === "quantile") {
     colorScale = d3
       .scaleQuantile()
       .domain(dataset)
       .range(["white", "pink", "red"]);
+
+    console.log("Quantile:", colorScale.quantiles());
   } else if (scale === "threshold") {
     colorScale = d3
       .scaleThreshold()
       .domain([45200, 135600])
-      .range(["white", "pink", "red"]);
+      .range(d3.schemeReds[3]);
   }
 
   //Rectangles
